@@ -318,27 +318,12 @@ cb_km <- clusterboot(
 jaccard_km <- cb_km$bootmean
 
 
-jaccards <- dc.norm9(
+jaccards <- cb_km(
   Metodo = "K-means",
   Jaccard_Medio = mean(jaccard_km)
 )
 
 jaccards
-
-
-
-# Mapa de calor
-library(pheatmap)
-
-pheatmap(dc.norm9,
-         scale = "none",
-         clustering_distance_rows = Matriz,   # usa sua distância Mahalanobis LW
-         clustering_distance_cols = "euclidean",   # nas colunas não precisa Mahal.
-         clustering_method = "ward.D2",      # mesmo método do seu dendrograma
-         treeheight_row = 80,
-         fontsize_row = 7,
-         cex = 0.6,
-         main = "Heatmap para cada observação")
 
 
 
@@ -463,16 +448,6 @@ pheatmap(mat_medias_9,
          scale = "column",
          color = colorRampPalette(c("blue", "white", "red"))(100)
          )
-
-
-
-pheatmap(mat_medias_k15,
-         cluster_rows = TRUE,
-         cluster_cols = TRUE,
-         scale = "column",
-         color = colorRampPalette(c("blue", "white", "red"))(100),
-         main = "Heatmap das Médias por Cluster (k=15)")
-
 
 
 
